@@ -1,0 +1,56 @@
+---
+name: Update documentation
+
+# yamllint disable-line rule:truthy
+on:
+  push:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    name: Update documentation
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: arduino/setup-task@v1
+
+    - name: Get ansible README task list
+      id: ansible
+      run: |
+        { echo "tasks<<EOF"; task --dir=./ansible; echo "EOF"; } >> "$GITHUB_OUTPUT"
+
+    - name: Update ansible README with task list
+      uses: alistaircol/update-markdown-action@v0.1.1
+      with:
+        file: ansible/README.md
+        delimiter_open: <!-- task-start -->
+        delimiter_close: <!-- task-end -->
+        content: |
+          <pre>
+          ${{ steps.ansible.outputs.tasks }}
+          </pre>
+
+    - name: Get ansible README playbook tasks list
+      id: ansible_playbook_tasks_list
+      run: |
+        { echo "tasks<<EOF"; task ansible:documentation; echo "EOF"; } >> "$GITHUB_OUTPUT"
+
+    - name: Update ansible README with playbook tasks list
+      uses: alistaircol/update-markdown-action@v0.1.1
+      with:
+        file: ansible/README.md
+        delimiter_open: <!-- playbook-steps-start -->
+        delimiter_close: <!-- playbook-steps-end -->
+        content: |
+          <pre>
+          ${{ steps.ansible_playbook_tasks_list.outputs.tasks }}
+          </pre>
+
+    - name: Update ansible README task list
+      uses: EndBug/add-and-commit@v9
+      with:
+        message: |
+          chore(docs): Update playbook tasks list sections in ansible README.md
+        push: true
