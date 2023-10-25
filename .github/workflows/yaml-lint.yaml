@@ -1,0 +1,24 @@
+---
+name: Lint `yaml` files
+
+# yamllint disable-line rule:truthy
+on:
+  push:
+    paths:
+    - "**.yaml"
+    - "**.yamllint"
+    - ansible/.ansible-lint
+    branches:
+    - main
+
+jobs:
+  yaml-lint:
+    name: Run `yaml-lint` on all files
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Install Task
+      uses: arduino/setup-task@v1
+    - name: Run `lint`
+      run: task lint -- --format=github

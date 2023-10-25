@@ -1,0 +1,23 @@
+---
+- name: Load files to be sourced
+  become: true
+  block:
+  - name: Load files to be sourced to ~/.bashrc
+    ansible.builtin.blockinfile:
+      path: "{{ ansible_user_dir }}/.bashrc"
+      insertafter: EOF
+      block: |
+        for file in {{ ansible_user_dir }}/appliance-dotfiles/*.sh; do
+          source "$file"
+        done
+    when: ansible_user_shell == "/bin/bash"
+
+  - name: Load files to be sourced to ~/.zshrc
+    ansible.builtin.blockinfile:
+      path: "{{ ansible_user_dir }}/.zshrc"
+      insertafter: EOF
+      block: |
+        for file in {{ ansible_user_dir }}/appliance-dotfiles/*.sh; do
+          source "$file"
+        done
+    when: ansible_user_shell == "/bin/zsh"

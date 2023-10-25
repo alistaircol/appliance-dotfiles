@@ -1,0 +1,15 @@
+---
+all:
+  hosts:
+    pve:
+      ansible_host: pve.alistaircol.uk
+      ansible_user: root
+    nas:
+      ansible_host: nas.alistaircol.uk
+      ansible_user: ally
+    vpn:
+      ansible_host: vpn.alistaircol.uk
+      ansible_user: ally
+    ap:
+      ansible_host: ap.alistaircol.uk
+      ansible_user: ally

@@ -1,0 +1,58 @@
+---
+version: 3
+
+vars:
+  DOCKER_RUN: >-
+    docker run --rm --tty
+    --volume="{{.TASKFILE_DIR}}:/code:ro"
+    --volume="$(realpath ~/.ansible):/root/.ansible"
+    --workdir="/code"
+  DOCKER_IMAGE_ANSIBLE_LINT: pipelinecomponents/ansible-lint:0.51.0
+
+tasks:
+  default:
+    silent: true
+    cmds:
+    - task --list
+
+  lint:
+    desc: Lint all ansible files
+    interactive: true
+    cmds:
+    - "{{.DOCKER_RUN}} {{.DOCKER_IMAGE_ANSIBLE_LINT}} -c /code/.config/ansible-lint.yaml {{.CLI_ARGS}}"
+
+  install:
+    desc: Install ansible galaxy collections and roles
+    interactive: true
+    silent: true
+    cmds:
+    - ansible-galaxy collection install --requirements-file=requirements.yaml
+    - ansible-galaxy install --role-file=roles/requirements.yaml
+
+  list:
+    desc: List tasks that will be run for the playbook
+    interactive: true
+    silent: true
+    cmds:
+    - ansible-playbook --inventory-file=inventory.yaml {{.CLI_ARGS}} --list-tasks
+
+  dry-run:
+    desc: For the given playbook, do a dry-run
+    interactive: true
+    silent: true
+    cmds:
+    - ansible-playbook --inventory-file=inventory.yaml {{.CLI_ARGS}} --check
+
+  apply:
+    desc: Run the given playbook
+    interactive: true
+    silent: true
+    cmds:
+    - ansible-playbook --inventory-file=inventory.yaml {{.CLI_ARGS}}
+
+  documentation:
+    silent: true
+    cmds:
+    - task: list
+      vars:
+        CLI_ARGS: setup_rc_files.yaml

@@ -1,0 +1,11 @@
+---
+- name: Setup rc files
+  gather_facts: yes
+  hosts:
+  - all
+
+  roles:
+  - copy_rc_files
+  - completions/docker
+  - completions/taskfile
+  - load_rc_files

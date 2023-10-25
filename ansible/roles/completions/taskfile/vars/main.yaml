@@ -1,0 +1,6 @@
+---
+zsh_completion_file_url: https://github.com/go-task/task/raw/main/completion/zsh/_task
+zsh_completion_file_path: /usr/local/share/zsh/site-functions/_task
+
+bash_completion_file_url: https://github.com/go-task/task/raw/main/completion/bash/task.bash
+bash_completion_file_path: /etc/bash_completion.d/task

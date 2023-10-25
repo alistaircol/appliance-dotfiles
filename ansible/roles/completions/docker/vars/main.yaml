@@ -1,0 +1,6 @@
+---
+zsh_completion_file_url: https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker
+zsh_completion_file_path: /usr/local/share/zsh/site-functions/_docker
+
+bash_completion_file_url: https://raw.githubusercontent.com/docker/cli/master/contrib/completion/bash/docker
+bash_completion_file_path: /etc/bash_completion.d/docker-compose

@@ -1,0 +1,22 @@
+---
+- name: Install docker bash completion
+  become: true
+  when: ansible_user_shell == "/bin/bash"
+  block:
+  - name: Download bash completion file
+    ansible.builtin.get_url:
+      url: "{{ bash_completion_file_url }}"
+      dest: "{{ bash_completion_file_path }}"
+      mode: "0777"
+      force: true
+
+- name: Install docker zsh completion
+  become: true
+  when: ansible_user_shell == "/bin/zsh"
+  block:
+  - name: Download zsh completion file
+    ansible.builtin.get_url:
+      url: "{{ zsh_completion_file_url }}"
+      dest: "{{ zsh_completion_file_path }}"
+      mode: "0777"
+      force: true

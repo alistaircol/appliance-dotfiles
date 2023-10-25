@@ -1,0 +1,28 @@
+---
+profile: moderate
+
+# Offline mode disables installation of requirements.yml and schema refreshing
+# task install and github workflow will handle this separately
+offline: true
+
+exclude_paths:
+- Taskfile.yaml
+- requirements.yaml
+- inventory.yaml
+
+# List of additional kind:pattern to be added at the top of the default
+# match list, first match determines the file kind.
+kinds:
+- playbook: "*.yaml"
+- vars: "**/vars/*.yml"
+- roles: roles/*.yaml
+# - galaxy: "**/folder/galaxy.yml"
+# - tasks: "**/tasks/*.yml"
+# - vars: "**/vars/*.yml"
+# - meta: "**/meta/main.yml"
+# - yaml: "**/*.yaml-too"
+
+# No point checking this since yamllint in root does this
+skip_list:
+- yaml[indentation]
+- yaml[truthy]

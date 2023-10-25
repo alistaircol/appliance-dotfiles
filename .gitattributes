@@ -1,0 +1,9 @@
+.yamllint linguist-language=YAML
+.yamllint linguist-detectable=true
+ansible/.ansible-lint linguist-language=YAML
+ansible/.ansible-lint linguist-detectable=true
+*.yaml linguist-language=YAML
+*.yaml linguist-detectable=true
+*.yml linguist-language=YAML
+*.yml linguist-detectable=true
+.env.example linguist-language=dotenv

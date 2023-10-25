@@ -1,0 +1,28 @@
+---
+- name: Copy files to be sourced to a remote location
+  become: true
+  block:
+  - name: Ensure the appliance-dotfiles directory exists
+    ansible.builtin.file:
+      path: "{{ ansible_user_dir }}/appliance-dotfiles"
+      state: directory
+
+  - name: Copy the files to be sourced to the appliance-dotfiles directory on remote
+    ansible.builtin.copy:
+      src: "{{ item }}"
+      dest: "{{ ansible_user_dir }}/appliance-dotfiles"
+    with_fileglob: "{{ role_path }}/files/*.sh"
+
+  - name: Copy bash only files to be sourced to the appliance-dotfiles directory on remote
+    ansible.builtin.copy:
+      src: "{{ item }}"
+      dest: "{{ ansible_user_dir }}/appliance-dotfiles"
+    with_fileglob: "{{ role_path }}/files/bash/*.sh"
+    when: ansible_user_shell == "/bin/bash"
+
+  - name: Copy zsh only files to be sourced to the appliance-dotfiles directory on remote
+    ansible.builtin.copy:
+      src: "{{ item }}"
+      dest: "{{ ansible_user_dir }}/appliance-dotfiles"
+    with_fileglob: "{{ role_path }}/files/zsh/*.sh"
+    when: ansible_user_shell == "/bin/zsh"
