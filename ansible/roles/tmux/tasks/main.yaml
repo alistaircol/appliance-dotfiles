@@ -1,6 +1,5 @@
 ---
 - name: Copy tmux config file
-  become: true
   block:
   - name: Copy tmux config file
     ansible.builtin.copy:

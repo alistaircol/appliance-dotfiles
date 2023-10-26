@@ -1,6 +1,5 @@
 ---
 - name: Copy files to be sourced to a remote location
-  become: true
   block:
   - name: Ensure the appliance-dotfiles directory exists
     ansible.builtin.file:
