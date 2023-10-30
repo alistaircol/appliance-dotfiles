@@ -8,5 +8,4 @@
   - copy_rc_files
   - completions/docker
   - completions/taskfile
-  - tmux
   - load_rc_files

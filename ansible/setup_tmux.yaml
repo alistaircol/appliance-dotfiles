@@ -1,0 +1,8 @@
+---
+- name: Setup tmux(intator) files
+  gather_facts: yes
+  hosts:
+  - all
+
+  roles:
+  - tmux
