@@ -1,0 +1,10 @@
+---
+version: 3
+
+tasks:
+  run:
+    desc: Run a workflow locally (e.g. `task action:run JOB_NAME=yaml-lint WORKFLOW_FILE=.github/workflows/yaml-lint.yaml`)
+    interactive: true
+    silent: false
+    cmds:
+    - act -j {{.JOB_NAME}} -W {{.WORKFLOW_FILE}}

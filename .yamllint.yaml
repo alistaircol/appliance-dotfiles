@@ -4,7 +4,7 @@ extends: default
 yaml-files:
 - "*.yaml"
 - "*.yml'"
-- ansible/.ansible-lint
+- .ansible-lint
 
 rules:
   braces:

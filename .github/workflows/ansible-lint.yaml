@@ -5,7 +5,8 @@ name: Ansible lint `yaml` files
 on:
   push:
     paths:
-    - ansible/**.yaml
+    - "**.yaml"
+    - .ansible-lint
     branches:
     - main
 

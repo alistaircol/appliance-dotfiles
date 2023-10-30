@@ -17,19 +17,19 @@ jobs:
     - uses: arduino/setup-task@v1
 
     - name: Get ansible README task list
-      id: ansible
+      id: task
       run: |
-        { echo "tasks<<EOF"; task --dir=./ansible; echo "EOF"; } >> "$GITHUB_OUTPUT"
+        { echo "tasks<<EOF"; task; echo "EOF"; } >> "$GITHUB_OUTPUT"
 
     - name: Update ansible README with task list
       uses: alistaircol/update-markdown-action@v0.1.1
       with:
-        file: ansible/README.md
+        file: README.md
         delimiter_open: <!-- task-start -->
         delimiter_close: <!-- task-end -->
         content: |
           <pre>
-          ${{ steps.ansible.outputs.tasks }}
+          ${{ steps.task.outputs.tasks }}
           </pre>
 
     - name: Get ansible README playbook tasks list
@@ -40,7 +40,7 @@ jobs:
     - name: Update ansible README with playbook tasks list
       uses: alistaircol/update-markdown-action@v0.1.1
       with:
-        file: ansible/README.md
+        file: README.md
         delimiter_open: <!-- playbook-steps-start -->
         delimiter_close: <!-- playbook-steps-end -->
         content: |

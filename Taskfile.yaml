@@ -5,9 +5,8 @@ dotenv:
 - .env
 
 includes:
-  ansible:
-    taskfile: ./ansible/Taskfile.yaml
-    dir: ansible/
+  action: ./tasks/action.yaml
+  ansible: tasks/ansible.yaml
 
 vars:
   DOCKER_RUN: docker run --rm --tty --volume="$(pwd):/app" --workdir="/app"

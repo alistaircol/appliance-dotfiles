@@ -10,16 +10,11 @@ vars:
   DOCKER_IMAGE_ANSIBLE_LINT: pipelinecomponents/ansible-lint:0.51.0
 
 tasks:
-  default:
-    silent: true
-    cmds:
-    - task --list
-
   lint:
     desc: Lint all ansible files
     interactive: true
     cmds:
-    - "{{.DOCKER_RUN}} {{.DOCKER_IMAGE_ANSIBLE_LINT}} -c /code/.config/ansible-lint.yaml {{.CLI_ARGS}}"
+    - "{{.DOCKER_RUN}} {{.DOCKER_IMAGE_ANSIBLE_LINT}} {{.CLI_ARGS}}"
 
   install:
     desc: Install ansible galaxy collections and roles

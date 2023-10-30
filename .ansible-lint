@@ -9,6 +9,7 @@ exclude_paths:
 - Taskfile.yaml
 - requirements.yaml
 - inventory.yaml
+- tasks/**.yaml
 
 # List of additional kind:pattern to be added at the top of the default
 # match list, first match determines the file kind.
