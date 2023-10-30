@@ -54,5 +54,11 @@ playbook: setup_rc_files.yaml
       completions/taskfile : Download zsh completion file	TAGS: []
       load_rc_files : Load files to be sourced to ~/.bashrc	TAGS: []
       load_rc_files : Load files to be sourced to ~/.zshrc	TAGS: []
+
+playbook: setup_tmux.yaml
+
+  play #1 (all): Setup tmux(intator) files	TAGS: []
+    tasks:
+      tmux : Copy tmux config file	TAGS: []
 </pre>
 <!-- playbook-steps-end -->
