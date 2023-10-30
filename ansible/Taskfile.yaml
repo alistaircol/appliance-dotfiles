@@ -56,3 +56,6 @@ tasks:
     - task: list
       vars:
         CLI_ARGS: setup_rc_files.yaml
+    - task: list
+      vars:
+        CLI_ARGS: setup_tmux.yaml
