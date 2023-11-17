@@ -13,3 +13,10 @@ all:
     ap:
       ansible_host: ap.alistaircol.uk
       ansible_user: ally
+    semaphore:
+      ansible_host: 192.168.1.18
+      ansible_user: ally
+
+  # https://github.com/ansible-semaphore/semaphore/issues/675#issuecomment-877654341
+  vars:
+    ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
