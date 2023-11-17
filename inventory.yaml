@@ -19,4 +19,4 @@ all:
 
   # https://github.com/ansible-semaphore/semaphore/issues/675#issuecomment-877654341
   vars:
-    ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+    ansible_ssh_common_args: -o StrictHostKeyChecking=no
